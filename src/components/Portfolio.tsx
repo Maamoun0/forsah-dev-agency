@@ -1,99 +1,105 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, Plus } from 'lucide-react';
 
 const projects = [
   {
-    title: 'Nexus AI Dashboard',
-    category: 'SaaS / AI',
+    title: 'Neural Core Dashboard',
+    category: 'SaaS / AI Ecosystem',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070',
-    tags: ['Next.js', 'PyTorch', 'Tailwind'],
+    year: '2025',
   },
   {
-    title: 'EcoTrack Mobile App',
-    category: 'Mobile App',
+    title: 'Aether Mobile OS',
+    category: 'Systems Design',
     image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=2070',
-    tags: ['React Native', 'Firebase'],
+    year: '2024',
   },
   {
-    title: 'CryptoVault Platform',
-    category: 'Fintech',
+    title: 'Lumina Protocol',
+    category: 'Blockchain Architecture',
     image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=2232',
-    tags: ['Solidity', 'Web3.js', 'Node.js'],
+    year: '2025',
   },
 ];
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-32 bg-surface">
+    <section id="portfolio" className="py-40 bg-background overflow-hidden">
       <div className="container-custom">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-          <div className="space-y-4 max-w-2xl">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-32 gap-12">
+          <div className="space-y-8 max-w-3xl">
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="text-secondary font-bold tracking-widest uppercase text-sm"
+              viewport={{ once: true }}
+              className="flex items-center space-x-4"
             >
-              Selected Work
+              <Plus className="w-4 h-4 text-primary" />
+              <span className="text-xs uppercase tracking-[0.4em] font-medium text-primary">Portfolio of Intent</span>
             </motion.div>
+            
             <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl font-black font-heading leading-tight"
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-5xl md:text-8xl font-heading leading-[0.9] tracking-tight"
             >
-              DIGITAL CRAFTSMANSHIP <span className="text-muted">AT SCALE</span>
+              Proven <br />
+              <span className="italic text-muted/40">Technical</span> <br />
+              Superiority.
             </motion.h2>
           </div>
-          <motion.button 
+          
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="flex items-center space-x-3 text-white font-bold group"
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="pb-4"
           >
-            <span className="border-b border-white/20 pb-1 group-hover:border-primary transition-colors">View all projects</span>
-            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-primary transition-all">
-              <ArrowRight size={18} />
-            </div>
-          </motion.button>
+            <p className="text-muted/60 max-w-xs leading-relaxed mb-8">
+              A curated selection of projects where logic meets aesthetic excellence.
+            </p>
+            <button className="text-sm uppercase tracking-widest font-bold border-b border-primary pb-2 hover:text-primary transition-all">
+              Request Full Dossier
+            </button>
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
+              className="group bg-background p-8 hover:bg-surface transition-all duration-700 cursor-pointer"
             >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-neutral-900 mb-6">
+              <div className="relative aspect-[3/4] overflow-hidden mb-10">
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
-                  <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-xl">
-                    <ExternalLink size={20} />
+                <div className="absolute inset-0 bg-background/20 group-hover:bg-transparent transition-colors duration-700" />
+                
+                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
+                  <div className="w-12 h-12 bg-primary flex items-center justify-center text-background">
+                    <ArrowUpRight size={24} />
                   </div>
                 </div>
               </div>
               
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-primary uppercase tracking-widest">{project.category}</span>
-                  <div className="h-[1px] w-8 bg-white/10" />
+              <div className="space-y-4">
+                <div className="flex justify-between items-center text-[10px] uppercase tracking-[0.3em] text-muted/40 font-bold">
+                  <span>{project.category}</span>
+                  <span>{project.year}</span>
                 </div>
-                <h4 className="text-2xl font-bold font-heading group-hover:text-primary transition-colors">{project.title}</h4>
-                <div className="flex flex-wrap gap-3 pt-2">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-bold text-muted uppercase tracking-tighter">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <h4 className="text-3xl font-heading tracking-tight group-hover:text-primary transition-colors">{project.title}</h4>
               </div>
             </motion.div>
           ))}

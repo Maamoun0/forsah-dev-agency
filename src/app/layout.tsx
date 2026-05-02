@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Instrument_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ 
+const instrumentSans = Instrument_Sans({ 
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-instrument",
 });
 
-const outfit = Outfit({
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-cormorant",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${outfit.variable} font-sans`}>
+      <body className={`${instrumentSans.variable} ${cormorantGaramond.variable} font-sans`}>
+        <div className="noise-overlay" />
         {children}
       </body>
     </html>
