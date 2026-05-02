@@ -27,7 +27,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-6xl md:text-8xl font-black font-heading leading-[0.9] tracking-tighter"
+            className="text-5xl md:text-8xl font-black font-heading leading-[1] md:leading-[0.9] tracking-tighter"
           >
             ENGINEERING <span className="text-gradient">FUTURE-READY</span> DIGITAL PRODUCTS
           </motion.h1>

@@ -36,13 +36,13 @@ export default function Navbar() {
           isScrolled ? 'glass-card mx-auto max-w-5xl shadow-2xl shadow-primary/10' : 'bg-transparent'
         }`}>
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-4 group">
             <div className="relative w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center font-bold text-xl text-white overflow-hidden shadow-lg shadow-primary/20 transition-transform group-hover:scale-110">
               <span className="relative z-10">F</span>
               <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-            <span className="text-2xl font-bold font-heading tracking-tight text-white">
-              Forsah<span className="text-primary group-hover:text-secondary transition-colors">Dev</span>
+            <span className="text-2xl font-bold font-heading tracking-tight text-white pl-1">
+              Forsah<span className="text-primary group-hover:text-secondary transition-colors duration-500">Dev</span>
             </span>
           </Link>
 
