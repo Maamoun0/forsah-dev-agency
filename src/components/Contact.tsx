@@ -1,105 +1,109 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
+import { Mail, MessageSquare, MapPin, Send, ArrowRight } from 'lucide-react';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 relative">
+    <section id="contact" className="py-32 relative overflow-hidden">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-24">
           {/* Left: Info */}
-          <div className="space-y-12">
+          <div className="space-y-16">
             <div className="space-y-6">
-              <h2 className="text-sm font-bold text-primary uppercase tracking-[0.3em]">Contact Us</h2>
-              <h3 className="text-4xl md:text-5xl font-bold font-heading leading-tight">
-                Let's Build Something <span className="text-blue-400">Legendary</span> Together
-              </h3>
-              <p className="text-gray-400 text-lg leading-relaxed max-w-md">
-                Have a project in mind? We'd love to hear from you. Send us a message and we'll get back to you within 24 hours.
-              </p>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                className="text-primary font-bold tracking-widest uppercase text-sm"
+              >
+                Let's Talk
+              </motion.div>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="text-5xl md:text-7xl font-black font-heading leading-tight"
+              >
+                READY TO <span className="text-muted">SCALE</span> YOUR VISION?
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                className="text-muted text-xl leading-relaxed max-w-md"
+              >
+                We're currently accepting new projects for 2026. Reach out and let's discuss how we can help you grow.
+              </motion.p>
             </div>
 
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-primary border border-white/10">
-                  <Mail className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500 uppercase tracking-widest font-bold">Email</p>
-                  <p className="text-lg font-medium">hello@forsahdev.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-green-400 border border-white/10">
-                  <MessageSquare className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500 uppercase tracking-widest font-bold">WhatsApp</p>
-                  <p className="text-lg font-medium">+20 123 456 7890</p>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-blue-400 border border-white/10">
-                  <MapPin className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500 uppercase tracking-widest font-bold">Location</p>
-                  <p className="text-lg font-medium">Cairo, Egypt / Remote</p>
-                </div>
-              </div>
+            <div className="space-y-8">
+              {[
+                { icon: <Mail />, label: 'Email', value: 'hello@forsahdev.com', color: 'text-primary' },
+                { icon: <MessageSquare />, label: 'WhatsApp', value: '+20 123 456 7890', color: 'text-secondary' },
+                { icon: <MapPin />, label: 'Location', value: 'Cairo / Remote', color: 'text-accent' },
+              ].map((item, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex items-center space-x-6 group"
+                >
+                  <div className={`w-14 h-14 rounded-2xl bg-surface border border-white/5 flex items-center justify-center ${item.color} group-hover:scale-110 transition-transform duration-300`}>
+                    {item.icon}
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-muted uppercase tracking-widest">{item.label}</p>
+                    <p className="text-xl font-bold group-hover:text-white transition-colors">{item.value}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
 
           {/* Right: Form */}
           <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="glass-card p-10 shadow-2xl relative"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="glow-card p-12"
           >
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-400">Full Name</label>
+            <form className="space-y-8">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-muted uppercase tracking-widest ml-1">Full Name</label>
                   <input 
                     type="text" 
-                    placeholder="John Doe"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary transition-colors focus:outline-none"
+                    placeholder="Enter your name"
+                    className="w-full bg-background border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-primary transition-all focus:outline-none focus:ring-1 focus:ring-primary/20"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-400">Email Address</label>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-muted uppercase tracking-widest ml-1">Email Address</label>
                   <input 
                     type="email" 
-                    placeholder="john@example.com"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary transition-colors focus:outline-none"
+                    placeholder="name@company.com"
+                    className="w-full bg-background border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-primary transition-all focus:outline-none focus:ring-1 focus:ring-primary/20"
                   />
                 </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-400">Project Type</label>
-                <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary transition-colors focus:outline-none appearance-none">
-                  <option>Web Development</option>
-                  <option>Mobile App</option>
-                  <option>AI Solution</option>
-                  <option>Other</option>
+              <div className="space-y-3">
+                <label className="text-[10px] font-black text-muted uppercase tracking-widest ml-1">Project Category</label>
+                <select className="w-full bg-background border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-primary transition-all focus:outline-none focus:ring-1 focus:ring-primary/20 appearance-none cursor-pointer">
+                  <option>Web Engineering</option>
+                  <option>Mobile Solutions</option>
+                  <option>AI Integration</option>
+                  <option>Branding & Design</option>
                 </select>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-400">Message</label>
+              <div className="space-y-3">
+                <label className="text-[10px] font-black text-muted uppercase tracking-widest ml-1">Project Details</label>
                 <textarea 
                   rows={4}
-                  placeholder="Tell us about your project..."
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary transition-colors focus:outline-none"
+                  placeholder="What are we building?"
+                  className="w-full bg-background border border-white/5 rounded-2xl px-6 py-4 text-white focus:border-primary transition-all focus:outline-none focus:ring-1 focus:ring-primary/20 resize-none"
                 ></textarea>
               </div>
-              <button className="w-full bg-primary hover:bg-blue-500 text-white py-4 rounded-xl font-bold flex items-center justify-center space-x-2 shadow-lg shadow-primary/20 transition-all">
-                <span>Send Message</span>
-                <Send className="w-4 h-4" />
+              <button className="btn-primary w-full group py-5 flex items-center justify-center space-x-3">
+                <span className="text-lg">Send Proposal</span>
+                <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </form>
           </motion.div>

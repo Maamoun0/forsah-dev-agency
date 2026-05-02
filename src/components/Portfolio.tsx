@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 
 const projects = [
   {
@@ -26,46 +26,70 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-24 bg-secondary/30">
+    <section id="portfolio" className="py-32 bg-surface">
       <div className="container-custom">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div className="space-y-4 max-w-2xl">
-            <h2 className="text-sm font-bold text-primary uppercase tracking-[0.3em]">Our Portfolio</h2>
-            <h3 className="text-4xl md:text-5xl font-bold font-heading">
-              Proven Excellence in <span className="text-gray-500">Every Line of Code</span>
-            </h3>
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="text-secondary font-bold tracking-widest uppercase text-sm"
+            >
+              Selected Work
+            </motion.div>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-4xl md:text-6xl font-black font-heading leading-tight"
+            >
+              DIGITAL CRAFTSMANSHIP <span className="text-muted">AT SCALE</span>
+            </motion.h2>
           </div>
-          <button className="text-primary font-bold flex items-center space-x-2 group">
-            <span>View All Projects</span>
-            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
+          <motion.button 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="flex items-center space-x-3 text-white font-bold group"
+          >
+            <span className="border-b border-white/20 pb-1 group-hover:border-primary transition-colors">View all projects</span>
+            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-primary transition-all">
+              <ArrowRight size={18} />
+            </div>
+          </motion.button>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              viewport={{ once: true, margin: "-50px" }}
-              className="group relative overflow-hidden rounded-3xl"
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group cursor-pointer"
             >
-              <div className="aspect-[4/5] overflow-hidden">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-neutral-900 mb-6">
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+                  <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-xl">
+                    <ExternalLink size={20} />
+                  </div>
+                </div>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80" />
               
-              <div className="absolute bottom-0 left-0 w-full p-8 space-y-3">
-                <p className="text-primary text-xs font-bold uppercase tracking-widest">{project.category}</p>
-                <h4 className="text-2xl font-bold text-white">{project.title}</h4>
-                <div className="flex flex-wrap gap-2 pt-2">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold text-primary uppercase tracking-widest">{project.category}</span>
+                  <div className="h-[1px] w-8 bg-white/10" />
+                </div>
+                <h4 className="text-2xl font-bold font-heading group-hover:text-primary transition-colors">{project.title}</h4>
+                <div className="flex flex-wrap gap-3 pt-2">
                   {project.tags.map(tag => (
-                    <span key={tag} className="text-[10px] px-2 py-1 bg-white/10 rounded-full text-gray-300 backdrop-blur-md">
+                    <span key={tag} className="text-[10px] font-bold text-muted uppercase tracking-tighter">
                       {tag}
                     </span>
                   ))}

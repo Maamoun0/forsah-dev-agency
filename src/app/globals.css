@@ -1,18 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0A66C2;
-  --color-secondary: #0f172a;
-  --color-accent: #00d2ff;
-  --color-background: #030712;
+  --color-primary: #6366f1;
+  --color-secondary: #10b981;
+  --color-accent: #f43f5e;
+  --color-background: #030303;
   --color-foreground: #f8fafc;
+  --color-surface: #0a0a0a;
+  --color-muted: #64748b;
 
-  --font-heading: "Outfit", sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui;
+  --font-heading: var(--font-outfit), sans-serif;
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
 }
 
 @layer base {
   body {
     @apply bg-background text-foreground antialiased selection:bg-primary/30;
+    font-family: var(--font-inter);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-outfit);
   }
 }
 
@@ -22,21 +34,44 @@
   }
   
   .glass-card {
-    @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl;
+    @apply bg-surface/50 backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .glow-card {
+    @apply glass-card relative overflow-hidden transition-all duration-300;
+  }
+
+  .glow-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 opacity-0 transition-opacity duration-300;
+  }
+
+  .glow-card:hover::before {
+    @apply opacity-100;
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-400 to-cyan-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-white to-secondary;
+  }
+
+  .btn-primary {
+    @apply relative px-8 py-3 rounded-full font-semibold text-white overflow-hidden transition-all duration-300;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+  }
+
+  .btn-primary:hover {
+    @apply scale-105 shadow-[0_0_20px_rgba(99,102,241,0.5)];
   }
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #030303;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -45,5 +80,18 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0A66C2;
+  background: #6366f1;
+}
+
+/* Animations */
+@keyframes mesh-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-mesh {
+  background: linear-gradient(-45deg, #030303, #0a0a0a, #1e1b4b, #030303);
+  background-size: 400% 400%;
+  animation: mesh-gradient 15s ease infinite;
 }

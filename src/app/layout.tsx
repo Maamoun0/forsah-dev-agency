@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -7,13 +7,13 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const montserrat = Montserrat({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-outfit",
 });
 
 export const metadata: Metadata = {
-  title: "Forsah Dev | We Build Smart Software That Grows Your Business",
+  title: "Forsah Dev | Premium Software Agency",
   description: "Forsah Dev builds scalable, modern, and AI-powered software solutions that accelerate business growth.",
   keywords: ["Software Development", "AI Solutions", "Web Development", "SaaS", "Forsah Dev"],
 };
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${montserrat.variable} font-sans`}>
+      <body className={`${inter.variable} ${outfit.variable} font-sans`}>
         {children}
       </body>
     </html>
